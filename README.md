@@ -77,7 +77,7 @@ model = CatBoostClassifier(
 
 ## 📈 Визуализация важности признаков
 
-<img width="932" height="470" alt="image" src="https://github.com/user-attachments/assets/edf0a54e-e6f4-4f20-b31e-958175243e65" />
+![Feature Importance](image.png)
 
 ---
 
@@ -85,7 +85,7 @@ model = CatBoostClassifier(
 
 ### 1. Клонировать репозиторий
 ```bash
-git clone https://github.com/your-username/catboost-twitch-link-prediction.git
+git clone https://github.com/Mimi-cyber519/catboost-twitch-link-prediction.git
 cd catboost-twitch-link-prediction
 ```
 
@@ -105,7 +105,7 @@ pip install -r requirements.txt
 
 ### 4. Запустить обучение
 ```bash
-python link_prediction.py
+link_prediction.py
 ```
 
 ---
@@ -151,14 +151,6 @@ catboost-twitch-link-prediction/
 ## 📝 Лицензия
 
 MIT License
-
----
-
-## 📧 Контакты
-
-**Автор:** [Ваше имя]  
-**Email:** [ваш email]  
-**GitHub:** [ссылка на профиль]
 
 ---
 
