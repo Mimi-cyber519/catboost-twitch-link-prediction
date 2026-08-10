@@ -36,15 +36,18 @@ all_users = list(df_all.index)
 def get_pair_features(u1, u2):
     common_friends = len(nx.common_neighbors(G, u1, u2))
     same_comm = 1 if df_all.loc[u1, 'community'] == df_all.loc[u2, 'community'] else 0
+    both_mature = 1 if df_all.loc[u1, 'mature'] == df_all.loc[u2, 'mature'] else 0
+    both_partner = 1 if df_all.loc[u1, 'partner'] == df_all.loc[u2, 'partner'] else 0
     views_diff = abs(df_all.loc[u1, 'views'] - df_all.loc[u2, 'views'])
+    connections_diff = abs(df_all.loc[u1, 'connections'] - df_all.loc[u2, 'connections'])
+    rate_diff = abs(df_all.loc[u1, 'rate'] - df_all.loc[u2, 'rate'])
+    days_diff = abs(df_all.loc[u1,'days'] - df_all.loc[u2,'days'])
     try:
-        tags_1 = set(features_json[str(u1)])
-        tags_2 = set(features_json[str(u2)])
-        common_interests = len(tags_1 & tags_2)
+        common_interests = len(set(features_json[str(u1)]) & set(features_json[str(u2)]))
     except KeyError:
         common_interests = 0
 
-    return [common_friends, same_comm, views_diff, common_interests]
+    return [common_friends, same_comm, both_mature, both_partner, views_diff, connections_diff, rate_diff, days_diff, common_interests]
 
 for index, row in df.iterrows():
     u1 = row['from']
@@ -63,7 +66,7 @@ while len(X) < positive_count * 2:
         X.append(features)
         y.append(0)
 
-X_df = pd.DataFrame(X, columns=['common_friends', 'same_comm', 'views_diff', 'common_interests'])
+X_df = pd.DataFrame(X, columns=['common_friends', 'same_comm', 'both_mature', 'both_partner', 'views_diff', 'connections_diff', 'rate_diff', 'days_diff', 'common_interests'])
 y_series = pd.Series(y)
 
 train_start = time.time()
@@ -105,7 +108,7 @@ feature_imp_df = pd.DataFrame({
 }).sort_values(by='Важность (%)', ascending=True)
 
 plt.figure(figsize=(10, 5))
-plt.barh(feature_imp_df['Признак'], feature_imp_df['Важность (%)'], color='royalblue')
+plt.barh(feature_imp_df['Признак'], feature_imp_df['Важность (%)'], color='darkorchid')
 plt.xlabel('Важность признака в %')
 plt.title('Какие факторы сильнее всего влияют на предсказание связи?')
 plt.grid(axis='x', linestyle='--', alpha=0.7)
