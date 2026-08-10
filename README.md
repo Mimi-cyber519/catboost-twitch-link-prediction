@@ -144,9 +144,6 @@ catboost-twitch-link-prediction/
 │   ├── edges.csv
 │   ├── target.csv
 │   └── features.json
-│
-└── results/
-    └── feature_importance.png
 ```
 
 ---
