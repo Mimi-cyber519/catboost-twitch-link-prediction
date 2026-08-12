@@ -82,7 +82,7 @@ model = CatBoostClassifier(
 
 ### 1. Клонировать репозиторий
 ```bash
-git clone https://github.com/Mimi-cyber519/catboost-twitch-link-prediction.git
+git clone https://github.com/MimiCyberAlt/catboost-twitch-link-prediction.git
 cd catboost-twitch-link-prediction
 ```
 
